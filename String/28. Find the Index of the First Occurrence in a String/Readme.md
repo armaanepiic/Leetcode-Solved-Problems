@@ -28,7 +28,9 @@ Explanation: "leeto" did not occur in "leetcode", so we return -1.
 - `1 <= haystack.length, needle.length <= 10^4`
 - `haystack` and `needle` consist of only lowercase English characters
 
-## Solution Approach: Brute Force
+## Solution Approaches
+
+### 1. Brute Force
 
 - `diff = length of haystack - length of needle`
 - Traverse the haystack from index 0 to index `diff`
@@ -38,3 +40,17 @@ Explanation: "leeto" did not occur in "leetcode", so we return -1.
 - If not found, return -1
 - **Time Complexity:** O(n*m) where n = haystack length, m = needle length
 - **Space Complexity:** O(1)
+
+### 2. Rolling Hash (Rabin-Karp Algorithm)
+
+- Use polynomial hash function to compute hash values efficiently
+- Create a prefix hash array to store cumulative hash values of haystack
+- Create a power array to store powers of base for quick range hash calculation
+- Generate hash for the needle pattern
+- For each possible starting position in haystack:
+  - Calculate hash of substring using range query: `getRangeHash(i, i + needle_length - 1)`
+  - Compare with needle hash
+  - If hashes match, return the starting index `i`
+- If no match found, return -1
+- **Time Complexity:** O(n + m) average case, O(n*m) worst case (hash collisions)
+- **Space Complexity:** O(n) for prefix hash and power arrays
