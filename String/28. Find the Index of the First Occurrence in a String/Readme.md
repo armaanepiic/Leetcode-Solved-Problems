@@ -6,8 +6,6 @@
 
 Given two strings `needle` and `haystack`, return the index of the first occurrence of `needle` in `haystack`, or `-1` if `needle` is not part of `haystack`.
 
-This is a classic string matching problem, commonly known as the "Needle in a Haystack" problem or substring search.
-
 ## Examples
 
 ### Example 1
@@ -29,3 +27,14 @@ Explanation: "leeto" did not occur in "leetcode", so we return -1.
 
 - `1 <= haystack.length, needle.length <= 10^4`
 - `haystack` and `needle` consist of only lowercase English characters
+
+## Solution Approach: Brute Force
+
+- `diff = length of haystack - length of needle`
+- Traverse the haystack from index 0 to index `diff`
+- Take a substring of the same length as needle and compare it with needle
+- `substr(i, length of needle) == needle`
+- Return value of `i` which is the starting index of substring similar to needle
+- If not found, return -1
+- **Time Complexity:** O(n*m) where n = haystack length, m = needle length
+- **Space Complexity:** O(1)
