@@ -52,6 +52,12 @@ long long fact(int n)
     return n * fact(n-1);
 }
 
+void reverse_array(int i, int n, int arr[])
+{
+    if(i >= n/2) return;
+    swap(arr[i], arr[n-1-i]);
+    reverse_array(i+1, n, arr);
+}
 
 int main()
 {
@@ -86,7 +92,14 @@ int main()
     // cout << "Sum of " << 1 << " to " << n << " = " << sum_of_first_N(n);
 
     // factorial of N
-    cout << "Factorial of " << n << " = " << fact(n);
+    // cout << "Factorial of " << n << " = " << fact(n);
+
+    // reverse an array using recursion
+    int arr[n];
+    for (int i = 0; i < n; i++)
+        cin >> arr[i];
+    reverse_array(0, n, arr);
+    for(auto &it: arr) cout << it << ' ';
     
     return 0;
 }
