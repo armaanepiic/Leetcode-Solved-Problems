@@ -39,6 +39,20 @@ void printNToOneBacktrack(int i, int n)
     printNToOneBacktrack(i+1, n);
     cout << i << ' ';
 }
+
+int sum_of_first_N(int n)
+{
+    if(n == 0) return 0;
+    return  n + sum_of_first_N(n-1);
+}
+
+long long fact(int n)
+{
+    if(n == 1) return 1;
+    return n * fact(n-1);
+}
+
+
 int main()
 {
     ios_base::sync_with_stdio(false);
@@ -50,23 +64,29 @@ int main()
 
     // 1. print name 5 times
 
-    printName(1, n);
+    // printName(1, n);
 
     // 2. print linearly from 1 to N
 
-    printOneToN(1, n);
+    // printOneToN(1, n);
 
     // 3. print from N to 1
 
-    printNtoOne(1, n);
+    // printNtoOne(1, n);
 
     // 4. print linearly from 1 to N (By Backtracking)
 
-    printOneToNBacktrack(n, n);
+    // printOneToNBacktrack(n, n);
 
     // 5. print N to 1 (By Backtraching)
 
-    printNToOneBacktrack(1, n);
+    // printNToOneBacktrack(1, n);
+
+    // print the sum from 1 to N
+    // cout << "Sum of " << 1 << " to " << n << " = " << sum_of_first_N(n);
+
+    // factorial of N
+    cout << "Factorial of " << n << " = " << fact(n);
     
     return 0;
 }
