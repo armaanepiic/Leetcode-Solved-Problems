@@ -117,6 +117,31 @@ void isPrime()
     if (cnt > 2) cout << "NOT PRIME\n";
     else cout << "PRIME\n";
 }
+
+void gcd()
+{
+    int n1, n2, gcd;
+    cin >> n1 >> n2;
+    // Brute force method, TC: O(min(n1, n2))
+    // for(int i = min(n1,n2) ; i >= 1 ; i--){
+    //     if(n1 % i == 0 && n2 % i == 0){
+    //         gcd = i;
+    //         break;
+    //     }
+    // }
+    // cout << "GCD of " << n1 << ", " << n2 << " = " << gcd;
+    // better method
+    // TC : O(log(phi)min(a,b))
+    int a = n1, b = n2;
+    while(a > 0 && b > 0){
+        if(a > b) a = a % b;
+        else b = b % a;
+    }
+    if(a == 0) gcd = b;
+    else gcd = a;
+    cout << "GCD of " << n1 << ", " << n2 << " = " << gcd;
+}
+
 int main()
 {
     ios_base::sync_with_stdio(false);
@@ -132,7 +157,9 @@ int main()
 
     // divisors();
 
-    isPrime();
+    // isPrime();
+
+    // gcd();
 
     return 0;
 }
