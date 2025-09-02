@@ -59,14 +59,31 @@ void reverse_array(int i, int n, int arr[])
     reverse_array(i+1, n, arr);
 }
 
+bool check_palindrome(int i, string &s)
+{
+    // TC : O(n/2)
+    if(i >= s.length()/2) return true;
+    if(s[i] != s[s.length() - i - 1]) return false;
+    return check_palindrome(i+1, s);
+}
+
+void isPalindrome()
+{
+    string s;
+    cin >> s;
+    bool palindrome = check_palindrome(0, s);
+    if(palindrome) cout << "Palindrome";
+    else cout << "Not Palindrome";
+}
+
 int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
 
-    int n;
-    cin >> n;
+    // int n;
+    // cin >> n;
 
     // 1. print name 5 times
 
@@ -95,12 +112,16 @@ int main()
     // cout << "Factorial of " << n << " = " << fact(n);
 
     // reverse an array using recursion
+    /*
     int arr[n];
     for (int i = 0; i < n; i++)
         cin >> arr[i];
     reverse_array(0, n, arr);
     for(auto &it: arr) cout << it << ' ';
-    
+    */
+
+    // check a string a palindrome or not
+    isPalindrome();
     return 0;
 }
 // 1. print name 5 times
