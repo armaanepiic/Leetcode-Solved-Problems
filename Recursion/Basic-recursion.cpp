@@ -59,19 +59,23 @@ void reverse_array(int i, int n, int arr[])
     reverse_array(i+1, n, arr);
 }
 
-bool check_palindrome(int i, string &s)
+bool check_palindrome(int i, int r, string &s)
 {
     // TC : O(n/2)
-    if(i >= s.length()/2) return true;
-    if(s[i] != s[s.length() - i - 1]) return false;
-    return check_palindrome(i+1, s);
+    if(i >= r) return true;
+    if(!isalnum(s[i]))
+        i++;
+    if(tolower((isalnum(s[i]) == 1) && tolower(s[i]) != tolower(s[s.length()-i-1]))) return false;
+    // if((isalnum(s[i]) == 1) && (tolower(s[i]) != tolower(s[s.length() - i - 1])))  return false;
+    return check_palindrome(i+1, r-1, s);
 }
 
 void isPalindrome()
 {
     string s;
-    cin >> s;
-    bool palindrome = check_palindrome(0, s);
+    getline(cin, s);
+    // A man, a plan, a canal: Panama
+    bool palindrome = check_palindrome(0, s.length()-1, s);
     if(palindrome) cout << "Palindrome";
     else cout << "Not Palindrome";
 }
