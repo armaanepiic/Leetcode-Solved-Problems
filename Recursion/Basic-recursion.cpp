@@ -80,6 +80,15 @@ void isPalindrome()
     else cout << "Not Palindrome";
 }
 
+int fibonacci(int n)
+{
+    // TC : O(2^n) exponential nature
+    if(n <= 1) return n;
+    int last = fibonacci(n-1);
+    int second_last = fibonacci(n-2);
+    return last + second_last;
+}
+
 int main()
 {
     ios_base::sync_with_stdio(false);
@@ -125,7 +134,15 @@ int main()
     */
 
     // check a string a palindrome or not
-    isPalindrome();
+    // isPalindrome();
+
+    // fibonacci
+    // 0 1 1 2 3 5 8
+    /*
+    int n;
+    cin >> n;
+    cout << n << "th fibonacci = " << fibonacci(n);
+    */
     return 0;
 }
 // 1. print name 5 times
