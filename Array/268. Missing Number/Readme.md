@@ -72,25 +72,29 @@ Given an array `nums` containing `n` distinct numbers in the range `[0, n]`, ret
 - `S2 = 3+0+1 = 4`
 - Missing = `6-4 = 2`
 
-### 4. XOR Approach (Best - No Overflow Risk)
+### 4. XOR Approach (Optimal)
 **Time Complexity:** O(n)  
 **Space Complexity:** O(1)
 
 **Algorithm:**
-- Use XOR properties: `a^a = 0` and `0^a = a`
-- `XOR1 = XOR of (0 to N)` where N = size of given vector
-- `XOR2 = XOR of all members in given vector`
-- Return `XOR1 ^ XOR2`
+- Suppose we have an array [0-N] where N is the size of given vector
+- We have given a vector which has N elements with members in range [0,N]
+- So our given vector has one member missing from our imagined array
+- This means we have pairs of same numbers between them but only one member remains single
+- Loop through the given vector and take XOR between the members and their indices
+- Finally take XOR with the value of N
 
 **Example:** For `nums = [3,0,1]`:
-- `XOR1 = 0^1^2^3 = 0`
-- `XOR2 = 3^0^1 = 2`
-- Missing = `0^2 = 2`
+- Initialize: `result = 0`
+- `i=0`: `result = 0 ^ 0 ^ 3 = 3`
+- `i=1`: `result = 3 ^ 1 ^ 0 = 2`
+- `i=2`: `result = 2 ^ 2 ^ 1 = 1`
+- Final: `result = 1 ^ 3 = 2` (XOR with N=3)
 
-**Why XOR works:**
-- All numbers from 0 to N appear exactly once in the complete set
-- All numbers in nums appear once, except the missing number appears zero times
-- XORing complete set with nums cancels out all present numbers, leaving only the missing one
+**Why this works:**
+- We XOR each array element with its index: `nums[i] ^ i`
+- Then XOR with N to complete the [0,N] range
+- All present numbers cancel out (appear twice), leaving only the missing number
 
 ## Approach Comparison
 
@@ -106,4 +110,4 @@ Given an array `nums` containing `n` distinct numbers in the range `[0, n]`, ret
 - **Range Property:** Array contains n numbers from range [0,n], so exactly one number is missing
 - **Uniqueness:** All numbers are distinct, making mathematical approaches viable
 - **XOR Advantage:** No risk of integer overflow compared to sum approach
-- **Follow-up Solution:** Both Math Sum and XOR approaches satisfy O(1) space and O(n) time requirements
+- **Follow-up Solution:** Math Sum and Single Pass XOR approaches satisfy O(1) space and O(n) time requirements optimally
